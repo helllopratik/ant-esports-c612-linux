@@ -6,7 +6,10 @@ An **unofficial Linux utility** to display real-time CPU temperature on the
 This project enables the cooler’s display **without Windows software** by
 communicating directly with the device over USB HID.
 
-> ⚠️ This project is **not affiliated with or endorsed by Ant Esports**.
+> [!CAUTION]
+>This project is **not affiliated with or endorsed by Ant Esports**.
+> 
+> Project is under **passive development**.
 
 ---
 
@@ -49,3 +52,81 @@ Install required packages:
 ```bash
 sudo apt update
 sudo apt install -y libhidapi-dev lm-sensors gcc
+```
+
+### Arch Linux
+```bash
+sudo pacman -S hidapi lm_sensors gcc
+```
+
+### Fedora
+```bash
+sudo dnf install hidapi-devel lm_sensors gcc
+```
+## 🧪 Enable Sensors (Required Once)
+```bash
+sudo sensors-detect
+```
+Accept defaults and reboot if prompted.
+## Verify
+```bash
+sensors
+```
+## 🛠 Build
+```bash
+gcc ant_c612_temp.c -o ant_c612_temp -lhidapi-hidraw
+```
+## ▶ Run
+```bash
+sudo ./ant_c612_temp
+```
+You should immediately see the CPU temperature update on the cooler display.
+
+## 🔍 If the Program Fails to Open the Device
+1️⃣ Find USB VID & PID
+```bash
+lsusb
+```
+Example Output
+```yaml
+Bus 001 Device 004: ID 5131:2007 MSR MSR-101U Mini HID magnetic card reader
+```
+If your VID:PID is different, Edit the values in the source code and Recompile.
+
+## 2️⃣ Check HID device nodes
+```bash
+sudo ls -l /dev/hidraw*
+```
+## 🔐 Optional: Run Without sudo (udev rule)
+
+Create a rule:
+```bash
+sudo nano /etc/udev/rules.d/99-ant-c612.rules
+```
+Add:
+```bash
+SUBSYSTEM=="hidraw", ATTRS{idVendor}=="5131", ATTRS{idProduct}=="2007", MODE="0666"
+```
+Reload:
+```bash
+sudo udevadm control --reload-rules
+sudo udevadm trigger
+```
+## 📂 Project Files
+
+ant_c612_temp.c — main source code 
+
+README.md — documentation 
+
+compatible.txt — tested / compatible devices 
+
+LICENSE — MIT License
+
+## ⚖️ Legal Notice
+
+This software is a clean-room, community-developed project created for
+interoperability with hardware already owned by the user.
+
+No proprietary code, firmware, or binaries are included.
+
+
