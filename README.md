@@ -43,7 +43,7 @@ The display supports **numeric temperature only**.
 
 ---
 
-## Easy Way Installatin
+## 📜 Quick Installation
 ```bash
 chmod +x install-ant-c612.sh
 sudo ./install-ant-c612.sh
@@ -73,7 +73,7 @@ sudo dnf install hidapi-devel lm_sensors gcc
 sudo sensors-detect
 ```
 Accept defaults and reboot if prompted.
-## Verify
+## ✅ Verify
 ```bash
 sensors
 ```
@@ -98,7 +98,7 @@ Bus 001 Device 004: ID 5131:2007 MSR MSR-101U Mini HID magnetic card reader
 ```
 If your VID:PID is different, Edit the values in the source code and Recompile.
 
-## 2️⃣ Check HID device nodes
+2️⃣ Check HID device nodes
 ```bash
 sudo ls -l /dev/hidraw*
 ```
