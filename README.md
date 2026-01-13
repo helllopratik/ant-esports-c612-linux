@@ -8,8 +8,7 @@ communicating directly with the device over USB HID.
 
 > [!CAUTION]
 >This project is **not affiliated with or endorsed by Ant Esports**.
-> 
-> Project is under **passive development**.
+
 
 ---
 
@@ -43,6 +42,12 @@ Due to hardware and firmware limitations of the C612:
 The display supports **numeric temperature only**.
 
 ---
+
+## Easy Way Installatin
+```bash
+chmod +x install-ant-c612.sh
+sudo ./install-ant-c612.sh
+```
 
 ## 🔧 Dependencies
 
